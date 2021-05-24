@@ -1,14 +1,6 @@
 # From Node.js to Deno
 
-Deno is a JavaScript/TypeScript runtime with secure defaults and a great
-developer experience.
-
-- Deno does not use `npm`.
-- Deno does not use `package.json` in its module resolution algorithm.
-- All async actions in Deno return a promise.
-- Deno requires explicit permissions for file, network, and environment access.
-- Deno always dies on uncaught errors.
-- Deno uses "ES Modules" and does not support `require()`.
+Deno for Node.js developers.
 
 ## Translations
 
