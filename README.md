@@ -10,6 +10,11 @@ developer experience.
 - Deno always dies on uncaught errors.
 - Deno uses "ES Modules" and does not support `require()`.
 
+## Contents
+
+  - [Console](#console)
+  - [File system](#file-system)
+
 ## Console
 
 - [1.0](#1.0) <a name='1.0'></a> Class `Console`
