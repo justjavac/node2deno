@@ -100,12 +100,12 @@ const data = await Deno.readTextFile("./README.md");
 ```ts
 // Node
 import fs from "fs/promises";
-const content = 'Some content!'
+const content = "Some content!";
 await fs.writeFile("./file.txt", content);
 
 // Deno
 // Requires `--allow-write` permission
-const content = 'Some content!'
+const content = "Some content!";
 await Deno.writeTextFile("./file.txt", content);
 ```
 
