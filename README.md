@@ -137,6 +137,7 @@ console.log(path.basename('/foo/bar/baz/asdf/quux.html')) // `quux.html`
 // Such as delimiter
 // for posix
 console.log(path.posix.delimiter); // `:`
+// for win32
 console.log(path.win32.delimiter); // `;`
 
 // Deno
