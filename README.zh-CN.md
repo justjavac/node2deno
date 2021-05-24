@@ -120,3 +120,31 @@ const file = await fs.open("./file.txt");
 // Requires `allow-read` and/or `allow-write` permissions depending on options.
 const file = await Deno.open("./file.txt");
 ```
+## Path
+
+- [3.0](#3.0) <a name='3.0'></a> Path 概要
+  - [Node path官方文档](https://nodejs.org/api/path.html)
+  - [Deno path官方文档](https://doc.deno.land/https/deno.land/std@0.97.0/path/mod.ts)
+
+```ts
+// Node
+// 所有有关路径的工具函数都在名为`path`的模块中
+const path = require("path");
+// 比如 basename
+console.log(path.basename('/foo/bar/baz/asdf/quux.html')) // `quux.html`
+// 所有的平台相关的代码都分别存在于`posix` 和 `win32` 子模块中
+// 比如 分隔符（delimiter）
+// posix版
+console.log(path.posix.delimiter); // `:`
+// win32版
+console.log(path.win32.delimiter); // `;`
+
+// Deno
+// Deno 的官方库API非常像 Node
+import { win32, posix, basename } from "https://deno.land/std@0.97.0/path/mod.ts"
+console.log(basename('/foo/bar/baz/asdf/quux.html')) // `quuz.html`
+// posix版
+console.log(posix.delimiter); // `:`
+// win32版
+console.log(win32.delimiter); // `;`
+```
