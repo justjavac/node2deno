@@ -83,3 +83,17 @@ console.trace("Show me");
 // Show me
 // (anonymous) @ VM45:1
 ```
+
+## File system
+
+- [2.0](#2.0) <a name='2.0'></a> Reading file
+
+```ts
+// Node v14.x
+import fs from "fs/promises";
+const data = await fs.readFile("./README.md", "utf8");
+
+// Deno
+const data = await Deno.readTextFile("./README.md");
+```
+
