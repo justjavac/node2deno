@@ -89,11 +89,37 @@ console.trace("Show me");
 - [2.0](#2.0) <a name='2.0'></a> Reading file
 
 ```ts
-// Node v14.x
+// Node
 import fs from "fs/promises";
 const data = await fs.readFile("./README.md", "utf8");
 
 // Deno
+// Requires `--allow-read` permission
 const data = await Deno.readTextFile("./README.md");
 ```
 
+- [2.1](#2.1) <a name='2.1'></a> Writing file
+
+```ts
+// Node
+import fs from "fs/promises";
+const content = 'Some content!'
+await fs.writeFile("./file.txt", content);
+
+// Deno
+// Requires `--allow-write` permission
+const content = 'Some content!'
+await Deno.writeTextFile("./file.txt", content);
+```
+
+- [2.2](#2.2) <a name='2.2'></a> File descriptors
+
+```ts
+// Node
+import fs from "fs/promises";
+const file = await fs.open("./file.txt");
+
+// Deno
+// Requires `allow-read` and/or `allow-write` permissions depending on options.
+const file = await Deno.open("./file.txt");
+```
