@@ -1,16 +1,14 @@
-# From Node.js to Deno
+# 从 Node.js 到 Deno
 
-Deno is a JavaScript/TypeScript runtime with secure defaults and a great
-developer experience.
+Deno 是一个 JavaScript/TypeScript 的运行时，默认使用安全环境执行代码，有着卓越的开发体验。
 
-- Deno does not use `npm`.
-- Deno does not use `package.json` in its module resolution algorithm.
-- All async actions in Deno return a promise.
-- Deno requires explicit permissions for file, network, and environment access.
-- Deno always dies on uncaught errors.
-- Deno uses "ES Modules" and does not support `require()`.
+- Deno 不使用 `npm`。
+- Deno 不使用 `package.json` 解析模块。
+- Deno 所有的乙部 API 都返回 promise。
+- Deno 需要显式指名文件、网络、系统环境变量等的权限。
+- Deno 使用 "ES Modules"，并且不支持 `require()`。
 
-## Translations
+## 翻译
 
 - [English](./README.md)
 - [简体中文](./README.zh-CN.md)
