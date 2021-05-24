@@ -120,3 +120,32 @@ const file = await fs.open("./file.txt");
 // Requires `allow-read` and/or `allow-write` permissions depending on options.
 const file = await Deno.open("./file.txt");
 ```
+
+## Path
+
+- [3.0](#3.0) <a name='3.0'></a> Path all in one
+  - [Docs for the Node path](https://nodejs.org/api/path.html)
+  - [Docs for the Deno path](https://doc.deno.land/https/deno.land/std@0.97.0/path/mod.ts)
+
+```ts
+// Node
+// All functionalities associated to path are under `path` module
+const path = require("path");
+// Such as basename
+console.log(path.basename('/foo/bar/baz/asdf/quux.html')) // `quux.html`
+// And all platform dependant code is under `posix` and `win32` submodules
+// Such as delimiter
+// for posix
+console.log(path.posix.delimiter); // `:`
+console.log(path.win32.delimiter); // `;`
+
+// Deno
+// Deno is very similar to the Node
+import { win32, posix, basename } from "https://deno.land/std@0.97.0/path/mod.ts"
+console.log(basename('/foo/bar/baz/asdf/quux.html')) // `quuz.html`
+// And of course
+// delimiter for posix
+console.log(posix.delimiter); // `:`
+// delimiter for win32
+console.log(win32.delimiter); // `;`
+```
