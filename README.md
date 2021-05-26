@@ -188,6 +188,20 @@ path.join("/foo", "bar", "baz/asdf", "quux", "..");
 // -> '/foo/bar/baz/asdf'
 ```
 
+### Resolves path segments into an absolute path.
+
+```ts
+// Node
+import path from "path";
+path.resolve('/foo/bar', './baz');
+// -> '/foo/bar/baz'
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.resolve('/foo/bar', './baz');
+// -> '/foo/bar/baz'
+```
+
 ### Normalizes a path
 
 ```ts
