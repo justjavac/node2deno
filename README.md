@@ -118,7 +118,35 @@ const file = await Deno.open("./file.txt");
 
 ## Path
 
-### Join all given path segments together
+### Last portion of a path
+
+```ts
+// Node
+const path = require("path");
+path.basename("/foo/bar/baz/asdf/quux.html");
+// -> 'quux.html'
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.basename("/foo/bar/baz/asdf/quux.html");
+// -> 'quux.html'
+```
+
+Or with file extensions:
+
+```ts
+// Node
+const path = require("path");
+path.basename("/foo/bar/baz/asdf/quux.html", ".html");
+// -> 'quux'
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.basename("/foo/bar/baz/asdf/quux.html", ".html");
+// -> 'quux'
+```
+
+### Join all path segments together
 
 ```ts
 // Node
@@ -132,7 +160,7 @@ path.join("/foo", "bar", "baz/asdf", "quux", "..");
 // -> '/foo/bar/baz/asdf'
 ```
 
-### Normalizes the given path
+### Normalizes a path
 
 ```ts
 // Node
@@ -144,6 +172,20 @@ path.normalize("/foo/bar//baz/asdf/quux/..");
 import * as path from "https://deno.land/std/path/mod.ts";
 path.normalize("/foo/bar//baz/asdf/quux/..");
 // -> '/foo/bar/baz/asdf'
+```
+
+### Parse a path
+
+```ts
+// Node
+const path = require("path");
+path.parse("/home/user/dir/file.txt");
+// -> { root: "/", dir: "/home/user/dir", base: "file.txt", ext: ".txt", name: "file" }
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.parse("/home/user/dir/file.txt");
+// -> { root: "/", dir: "/home/user/dir", base: "file.txt", ext: ".txt", name: "file" }
 ```
 
 ## Subprocess
