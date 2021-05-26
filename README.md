@@ -122,7 +122,7 @@ const file = await Deno.open("./file.txt");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.basename("/foo/bar/baz/asdf/quux.html");
 // -> 'quux.html'
 
@@ -136,7 +136,7 @@ Or with file extensions:
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.basename("/foo/bar/baz/asdf/quux.html", ".html");
 // -> 'quux'
 
@@ -150,7 +150,7 @@ path.basename("/foo/bar/baz/asdf/quux.html", ".html");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.dirname("/foo/bar/baz/asdf/quux");
 // -> '/foo/bar/baz/asdf'
 
@@ -164,7 +164,7 @@ path.dirname("/foo/bar/baz/asdf/quux");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.extname("index.html");
 // -> '.html'
 
@@ -178,7 +178,7 @@ path.extname("index.html");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.join("/foo", "bar", "baz/asdf", "quux", "..");
 // -> '/foo/bar/baz/asdf'
 
@@ -192,7 +192,7 @@ path.join("/foo", "bar", "baz/asdf", "quux", "..");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.normalize("/foo/bar//baz/asdf/quux/..");
 // -> '/foo/bar/baz/asdf'
 
@@ -206,7 +206,7 @@ path.normalize("/foo/bar//baz/asdf/quux/..");
 
 ```ts
 // Node
-const path = require("path");
+import path from "path";
 path.parse("/home/user/dir/file.txt");
 // -> { root: "/", dir: "/home/user/dir", base: "file.txt", ext: ".txt", name: "file" }
 
