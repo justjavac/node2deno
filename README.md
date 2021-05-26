@@ -118,36 +118,32 @@ const file = await Deno.open("./file.txt");
 
 ## Path
 
-- [3.0](#3.0) <a name='3.0'></a> Path all in one
-  - [Docs for the Node path](https://nodejs.org/api/path.html)
-  - [Docs for the Deno path](https://doc.deno.land/https/deno.land/std@0.97.0/path/mod.ts)
+- [3.0](#3.0) <a name='3.0'></a> Join all given path segments together
 
 ```ts
 // Node
-// All functionalities associated to path are under `path` module
 const path = require("path");
-// Such as basename
-console.log(path.basename("/foo/bar/baz/asdf/quux.html")); // `quux.html`
-// And all platform dependant code is under `posix` and `win32` submodules
-// Such as delimiter
-// for posix
-console.log(path.posix.delimiter); // `:`
-// for win32
-console.log(path.win32.delimiter); // `;`
+path.join("/foo", "bar", "baz/asdf", "quux", "..");
+// -> '/foo/bar/baz/asdf'
 
 // Deno
-// Deno is very similar to the Node
-import {
-  basename,
-  posix,
-  win32,
-} from "https://deno.land/std@0.97.0/path/mod.ts";
-console.log(basename("/foo/bar/baz/asdf/quux.html")); // `quuz.html`
-// And of course
-// delimiter for posix
-console.log(posix.delimiter); // `:`
-// delimiter for win32
-console.log(win32.delimiter); // `;`
+import * as path from "https://deno.land/std/path/mod.ts";
+path.join("/foo", "bar", "baz/asdf", "quux", "..");
+// -> '/foo/bar/baz/asdf'
+```
+
+- [3.1](#3.1) <a name='3.1'></a> Normalizes the given path
+
+```ts
+// Node
+const path = require("path");
+path.normalize("/foo/bar//baz/asdf/quux/..");
+// -> '/foo/bar/baz/asdf'
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.normalize("/foo/bar//baz/asdf/quux/..");
+// -> '/foo/bar/baz/asdf'
 ```
 
 ## Subprocess
