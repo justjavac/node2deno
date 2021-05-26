@@ -2,11 +2,6 @@
 
 Deno for Node.js developers.
 
-## Translations
-
-- [English](./README.md)
-- [简体中文](./README.zh-CN.md)
-
 ## Console
 
 - [1.0](#1.0) <a name='1.0'></a> Class `Console`
