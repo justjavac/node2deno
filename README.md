@@ -146,7 +146,7 @@ path.basename("/foo/bar/baz/asdf/quux.html", ".html");
 // -> 'quux'
 ```
 
-### directory name of a path
+### Directory name of a path
 
 ```ts
 // Node
@@ -158,6 +158,20 @@ path.dirname("/foo/bar/baz/asdf/quux");
 import * as path from "https://deno.land/std/path/mod.ts";
 path.dirname("/foo/bar/baz/asdf/quux");
 // -> '/foo/bar/baz/asdf'
+```
+
+### Extension of the path
+
+```ts
+// Node
+const path = require("path");
+path.extname("index.html");
+// -> '.html'
+
+// Deno
+import * as path from "https://deno.land/std/path/mod.ts";
+path.extname("index.html");
+// -> '.html'
 ```
 
 ### Join all path segments together
