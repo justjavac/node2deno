@@ -150,3 +150,78 @@ console.log(posix.delimiter); // `:`
 // delimiter for win32
 console.log(win32.delimiter); // `;`
 ```
+## Subprocess
+- [4.0](#4.0) <a name='4.0'></a> Subprocess in a short story
+  - [Node `child_process` official docs](https://nodejs.org/api/child_process.html)
+  - [Deno `Deno.run` official docs](https://doc.deno.land/builtin/stable#Deno.run)
+  - [Deno `Web worker` official guides](https://deno.land/manual/runtime/workers#workers)
+
+```ts
+// Node
+// All functionalities associated to subprocess are under `child_process` module
+const child_process = require("child_process");
+// Spawn a subprocess
+const p = child_process.spawn("ping", ["-h"]);
+// OR buffered version `child_process.exec`
+// OR synced version `child_process.spawnSync`
+// redirect stdout
+p.stdout.on("data", data => console.log(data));
+// redirect stderr
+p.stderr.on("data", error => console.log(error));
+// Subprocess Close event
+p.on("close", code => console.log(`child process exited with code ${code}`))
+
+// Here's how we can spawn a *BRAND NEW* nodejs instance to run a js "module"
+child_process.fork("hello.js")
+
+// Final output: 
+//  <Buffer d1 a1 cf ee 20 2d 68 20 b2 bb d5 fd c8 b7 a1 a3 0d 0a 0d 0a d3 c3 b7 a8 3a 20 70 69 6e 67 20 5b 2d 74 5d 20 5b 2d 61 5d 20 5b 2d 6e 20 63 6f 75 6e 74 ... 1447 more bytes>
+//  child process exited with code 1
+//  hello from hello.js
+
+
+// Deno
+// Deno uses `Deno.run` to spawn a subprocess
+// `allow-run` permission *REQUIRED*
+const p = Deno.run({
+  cmd: ["ping", "-h"],
+  stdout: "piped",
+  stderr: "piped",
+});
+
+// HERE, we read out the stdout output that we set to piped before
+console.log(await p.output());
+// and of course the stderr
+console.log(await p.stderrOutput());
+
+// In Deno, we don't have a fork like function,
+// instead you can still use `Deno.run` to spawn
+// a `BRAND NEW` Deno instance to run the script
+const decoder = new TextDecoder();
+const forkLike = Deno.run({
+  cmd: ["deno", "run", "hello.js"],
+  stdout: "piped",
+});
+console.log(decoder.decode(await forkLike.output())); // hello from hello.js
+// OR in a IMO better way: `Web workers`
+new Worker(
+  new URL("./hello.js", import.meta.url).href,
+  { type: "module" },
+); // hello from hello.js
+
+// Final output: 
+//   Uint8Array(1497) [
+//    209, 161, 207, 238,  32,  45, 104,  32, 178, 187, 213, 253, 200, 183, 161,
+//    163,  13,  10,  13,  10, 211, 195, 183, 168,  58,  32, 112, 105, 110, 103,
+//     32,  91,  45, 116,  93,  32,  91,  45,  97,  93,  32,  91,  45, 110,  32,
+//     99, 111, 117, 110, 116,  93,  32,  91,  45, 108,  32, 115, 105, 122, 101,
+//     93,  32,  91,  45, 102,  93,  32,  91,  45, 105,  32,  84,  84,  76,  93,
+//     32,  91,  45, 118,  32,  84,  79,  83,  93,  13,  10,  32,  32,  32,  32,
+//     32,  32,  32,  32,  32,  32,  32,  32,  91,  45,
+//    ... 1397 more items
+//  ]
+//  Uint8Array(0) []
+//  hello from hello.js
+
+//  hello from hello.js
+```
