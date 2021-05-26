@@ -116,6 +116,32 @@ const file = await fs.open("./file.txt");
 const file = await Deno.open("./file.txt");
 ```
 
+### Copying file
+
+```ts
+// Node
+import fs from "fs/promises";
+await fs.copyFile('source.txt', 'target.txt');
+
+// Deno
+// Requires `allow-read` and/or `allow-write` permissions depending on options.
+import { copy } from "https://deno.land/std@0.97.0/fs/mod.ts";
+await copy('./source.txt', './target.txt');
+```
+
+### Moveing file
+
+```ts
+// Node
+import fs from "fs/promises";
+await fs.rename('source.txt', 'target.txt');
+
+// Deno
+// Requires `allow-read` and/or `allow-write` permissions depending on options.
+import { move } from "https://deno.land/std@0.97.0/fs/mod.ts";
+await move('./source.txt', './target.txt');
+```
+
 ## Path
 
 ### Last portion of a path
