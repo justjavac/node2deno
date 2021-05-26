@@ -127,7 +127,7 @@ const file = await Deno.open("./file.txt");
 // All functionalities associated to path are under `path` module
 const path = require("path");
 // Such as basename
-console.log(path.basename('/foo/bar/baz/asdf/quux.html')) // `quux.html`
+console.log(path.basename("/foo/bar/baz/asdf/quux.html")); // `quux.html`
 // And all platform dependant code is under `posix` and `win32` submodules
 // Such as delimiter
 // for posix
@@ -137,15 +137,21 @@ console.log(path.win32.delimiter); // `;`
 
 // Deno
 // Deno is very similar to the Node
-import { win32, posix, basename } from "https://deno.land/std@0.97.0/path/mod.ts"
-console.log(basename('/foo/bar/baz/asdf/quux.html')) // `quuz.html`
+import {
+  basename,
+  posix,
+  win32,
+} from "https://deno.land/std@0.97.0/path/mod.ts";
+console.log(basename("/foo/bar/baz/asdf/quux.html")); // `quuz.html`
 // And of course
 // delimiter for posix
 console.log(posix.delimiter); // `:`
 // delimiter for win32
 console.log(win32.delimiter); // `;`
 ```
+
 ## Subprocess
+
 - [4.0](#4.0) <a name='4.0'></a> Subprocess in a short story
   - [Node `child_process` official docs](https://nodejs.org/api/child_process.html)
   - [Deno `Deno.run` official docs](https://doc.deno.land/builtin/stable#Deno.run)
@@ -160,20 +166,19 @@ const p = child_process.spawn("ping", ["-h"]);
 // OR buffered version `child_process.exec`
 // OR synced version `child_process.spawnSync`
 // redirect stdout
-p.stdout.on("data", data => console.log(data));
+p.stdout.on("data", (data) => console.log(data));
 // redirect stderr
-p.stderr.on("data", error => console.log(error));
+p.stderr.on("data", (error) => console.log(error));
 // Subprocess Close event
-p.on("close", code => console.log(`child process exited with code ${code}`))
+p.on("close", (code) => console.log(`child process exited with code ${code}`));
 
 // Here's how we can spawn a *BRAND NEW* nodejs instance to run a js "module"
-child_process.fork("hello.js")
+child_process.fork("hello.js");
 
-// Final output: 
+// Final output:
 //  <Buffer d1 a1 cf ee 20 2d 68 20 b2 bb d5 fd c8 b7 a1 a3 0d 0a 0d 0a d3 c3 b7 a8 3a 20 70 69 6e 67 20 5b 2d 74 5d 20 5b 2d 61 5d 20 5b 2d 6e 20 63 6f 75 6e 74 ... 1447 more bytes>
 //  child process exited with code 1
 //  hello from hello.js
-
 
 // Deno
 // Deno uses `Deno.run` to spawn a subprocess
@@ -204,7 +209,7 @@ new Worker(
   { type: "module" },
 ); // hello from hello.js
 
-// Final output: 
+// Final output:
 //   Uint8Array(1497) [
 //    209, 161, 207, 238,  32,  45, 104,  32, 178, 187, 213, 253, 200, 183, 161,
 //    163,  13,  10,  13,  10, 211, 195, 183, 168,  58,  32, 112, 105, 110, 103,
