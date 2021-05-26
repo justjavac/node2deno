@@ -4,7 +4,7 @@ Deno for Node.js developers.
 
 ## Console
 
-- [1.0](#1.0) <a name='1.0'></a> Class `Console`
+### Class `Console`
 
 ```ts
 // Node
@@ -20,7 +20,7 @@ const { Console } = console;
 // undefined
 ```
 
-- [1.1](#1.1) <a name='1.1'></a> `console.error`
+### `console.error`
 
 ```ts
 // Node
@@ -48,7 +48,7 @@ console.error(new Error("Whoops, something bad happened"));
 //     at <anonymous>:1:15
 ```
 
-- [1.1](#1.2) <a name='1.2'></a> `console.trace`
+### `console.trace`
 
 ```ts
 // Node
@@ -78,7 +78,7 @@ console.trace("Show me");
 
 ## File system
 
-- [2.0](#2.0) <a name='2.0'></a> Reading file
+### Reading file
 
 ```ts
 // Node
@@ -90,7 +90,7 @@ const data = await fs.readFile("./README.md", "utf8");
 const data = await Deno.readTextFile("./README.md");
 ```
 
-- [2.1](#2.1) <a name='2.1'></a> Writing file
+### Writing file
 
 ```ts
 // Node
@@ -104,7 +104,7 @@ const content = "Some content!";
 await Deno.writeTextFile("./file.txt", content);
 ```
 
-- [2.2](#2.2) <a name='2.2'></a> File descriptors
+### File descriptors
 
 ```ts
 // Node
@@ -118,7 +118,7 @@ const file = await Deno.open("./file.txt");
 
 ## Path
 
-- [3.0](#3.0) <a name='3.0'></a> Join all given path segments together
+### Join all given path segments together
 
 ```ts
 // Node
@@ -132,7 +132,7 @@ path.join("/foo", "bar", "baz/asdf", "quux", "..");
 // -> '/foo/bar/baz/asdf'
 ```
 
-- [3.1](#3.1) <a name='3.1'></a> Normalizes the given path
+### Normalizes the given path
 
 ```ts
 // Node
@@ -148,10 +148,7 @@ path.normalize("/foo/bar//baz/asdf/quux/..");
 
 ## Subprocess
 
-- [4.0](#4.0) <a name='4.0'></a> Subprocess in a short story
-  - [Node `child_process` official docs](https://nodejs.org/api/child_process.html)
-  - [Deno `Deno.run` official docs](https://doc.deno.land/builtin/stable#Deno.run)
-  - [Deno `Web worker` official guides](https://deno.land/manual/runtime/workers#workers)
+### Subprocess in a short story
 
 ```ts
 // Node
